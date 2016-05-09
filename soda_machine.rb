@@ -11,29 +11,41 @@ class SodaMachine
     @sodas.length
   end
 
+  # def find_soda(soda_brand)
+  #   @sodas.each do |soda|
+  #     if soda.brand == soda_brand
+  #       return soda
+  #     end
+  #   end
+  #   nil
+  # end
+
   def find_soda(soda_brand)
-    @sodas.each do |soda|
-      if soda.brand == soda_brand
-        return soda
-      end
-    end
-    nil
+    @sodas.find { |soda| soda.brand == soda_brand }
   end
 
-  def sell(soda_brand)
-    if find_soda(soda_brand) != nil
-      @sodas.each do |soda|
-        if soda.brand == soda_brand
-          # add cash
-          @cash += soda.price
-          # remove soda from machine
-          @sodas.delete(soda)
-          return nil
-        end
-      end
-    end
-    nil
+def sell(soda_brand)
+  if find_soda(soda_brand) != nil
+    current_soda = @sodas.find{ |soda| soda.brand == soda_brand}
+    @cash += current_soda.price
+    @sodas.delete(current_soda)
   end
+end
+
+  # def sell(soda_brand)
+  #   if find_soda(soda_brand) != nil
+  #     @sodas.each do |soda|
+  #       if soda.brand == soda_brand
+  #         # add cash
+  #         @cash += soda.price
+  #         # remove soda from machine
+  #         @sodas.delete(soda)
+  #         return nil
+  #       end
+  #     end
+  #   end
+  #   nil
+  # end
 
 end
 
